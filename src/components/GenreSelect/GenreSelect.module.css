@@ -1,0 +1,22 @@
+.ul {
+    display: flex;
+}
+
+.li {
+    padding-bottom: 19px;
+    margin: 20px 15px;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+
+
+    text-transform: uppercase;
+
+    list-style: none;
+    cursor: pointer;
+}
+
+.selected {
+    border-bottom: 4px solid #F65261;
+}
