@@ -6,3 +6,8 @@
 body {
     background-color: #232323;
 }
+
+h2 {
+    font-size: 18px;
+    text-transform: capitalize;
+}
