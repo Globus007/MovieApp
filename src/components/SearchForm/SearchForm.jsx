@@ -10,7 +10,7 @@ export const SearchForm = ({ initialQuery, onSearch }) => {
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
-      onSearch?.call(null, query);
+      onSearch(query);
     }
   };
 
@@ -23,7 +23,7 @@ export const SearchForm = ({ initialQuery, onSearch }) => {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      <button className={styles.button} onClick={onSearch?.bind(null, query)}>
+      <button className={styles.button} onClick={() => onSearch(query)}>
         search
       </button>
     </div>

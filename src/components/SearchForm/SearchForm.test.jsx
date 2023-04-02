@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
-import { SearchForm } from './SearchForm';
 import userEvent from '@testing-library/user-event';
+import { SearchForm } from './SearchForm';
 
 describe('SearchForm component', () => {
   it('should renders an input with the value equal to initial value passed in props', () => {

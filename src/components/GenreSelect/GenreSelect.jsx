@@ -14,7 +14,7 @@ export const GenreSelect = ({ genders, selected, onSelect }) => {
           <li
             className={className}
             key={gender}
-            onClick={onSelect?.bind(null, gender)}
+            onClick={() => onSelect(gender)}
           >
             {gender}
           </li>
