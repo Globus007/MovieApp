@@ -8,6 +8,12 @@ export const SearchForm = ({ initialQuery, onSearch }) => {
     setQuery(event.target.value);
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      onSearch(query);
+    }
+  };
+
   return (
     <div className={styles.div}>
       <input
@@ -15,8 +21,9 @@ export const SearchForm = ({ initialQuery, onSearch }) => {
         className={styles.input}
         value={query}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
       />
-      <button className={styles.button} onClick={onSearch.bind(null, query)}>
+      <button className={styles.button} onClick={() => onSearch(query)}>
         search
       </button>
     </div>
