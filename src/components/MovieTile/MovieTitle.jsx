@@ -8,7 +8,7 @@ export const MovieTitle = ({ movieInfo, onClick }) => {
     <div className={styles.div} onClick={onClick}>
       <img className={styles.img} alt={movieName} src={imageUrl} />
       <div className={styles.name}>
-        <h2>{movieName}</h2>
+        <h3>{movieName}</h3>
         <span>{releaseYear}</span>
       </div>
       <span>{relevantGenres.join(', ')}</span>

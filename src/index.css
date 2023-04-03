@@ -1,6 +1,7 @@
 * {
     font-family: 'Montserrat', serif;
     color: #FFFFFF;
+    font-size: 20px;
 }
 
 body {
@@ -8,6 +9,11 @@ body {
 }
 
 h2 {
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+h3 {
     font-size: 18px;
     text-transform: capitalize;
 }
