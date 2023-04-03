@@ -13,7 +13,7 @@ export const MovieDetails = ({ movieInfo }) => {
   } = movieInfo;
 
   return (
-    <article className={styles.article}>
+    <section className={styles.section}>
       <img className={styles.img} alt={movieName} src={imageUrl} />
       <div className={styles.textBlock}>
         <div className={styles.title}>
@@ -27,6 +27,6 @@ export const MovieDetails = ({ movieInfo }) => {
         </div>
         <p className={styles.desc}>{description}</p>
       </div>
-    </article>
+    </section>
   );
 };
