@@ -1,0 +1,54 @@
+.section {
+    width: 100%;
+    height: 500px;
+
+    display: flex;
+}
+
+.textBlock {
+    margin-left: 50px;
+}
+
+.img {
+    height: 100%;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+}
+
+.rating {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 25px;
+
+    border: #FFFFFF 1px solid;
+    border-radius: 50%;
+}
+
+.genre {
+    font-size: 14px;
+}
+
+.yearTime {
+    margin-top: 30px;
+
+    display: flex;
+
+    color: #F65261;
+    font-size: 24px;
+}
+
+.time {
+    margin-left: 50px;
+}
+
+.desc {
+    margin-top: 30px;
+}

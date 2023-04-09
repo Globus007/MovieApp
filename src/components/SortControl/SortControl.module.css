@@ -1,0 +1,22 @@
+.section {
+    display: flex;
+    align-items: baseline;
+}
+
+.label, .select {
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.label {
+    font-weight: 400;
+    margin-right: 30px;
+}
+
+.select {
+    font-weight: 500;
+
+    border: 0;
+    outline: 0;
+    background: 0;
+}
