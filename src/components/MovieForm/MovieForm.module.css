@@ -1,0 +1,70 @@
+.form label {
+    text-transform: uppercase;
+    font-size: 16px;
+    color: #F65261;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form input, select, textarea {
+    margin-bottom: 30px;
+    background: #323232;
+    border: none;
+    padding: 10px;
+    outline: none;
+}
+
+.form textarea {
+    width: 100%;
+}
+
+.div {
+    display: flex;
+}
+
+.left, .right {
+    display: flex;
+    flex-direction: column;
+}
+
+.left {
+    width: 70%;
+    padding-right: 30px;
+}
+
+.right {
+    width: 30%;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buttons button {
+    width: 180px;
+    height: 60px;
+    border: #F65261 solid 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    border: #FFFFFF solid 1px;
+}
+
+button[type='submit'] {
+    background-color: #F65261;
+}
+
+button[type='reset'] {
+    margin-right: 10px;
+    color: #F65261;
+    background: none;
+}
+
+.delete {
+    margin-bottom: 50px;
+}
+
+
