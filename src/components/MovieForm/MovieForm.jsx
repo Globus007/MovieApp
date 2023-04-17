@@ -6,23 +6,25 @@ export const MovieForm = ({ movieInfo = {}, onSubmit }) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    onSubmit(data); // todo fix
+    onSubmit(data);
   };
 
   return (
     <form id="movie_form" className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.div}>
         <div className={styles.left}>
-          <label htmlFor="title">title</label>
+          <label htmlFor="movieName">title</label>
           <input
-            id="title"
+            id="movieName"
+            name="movieName"
             placeholder="Movie title"
             defaultValue={movieInfo?.movieName}
           />
 
-          <label htmlFor="movie_url"> movie url </label>
+          <label htmlFor="imageUrl"> movie url </label>
           <input
-            id="movie_url"
+            id="imageUrl"
+            name="imageUrl"
             placeholder="https://"
             defaultValue={movieInfo?.imageUrl}
           />
@@ -30,6 +32,7 @@ export const MovieForm = ({ movieInfo = {}, onSubmit }) => {
           <label htmlFor="genre">genre</label>
           <select
             id="genre"
+            name="genre"
             placeholder="Slelect genre"
             defaultValue={movieInfo?.genre}
           >
@@ -38,9 +41,10 @@ export const MovieForm = ({ movieInfo = {}, onSubmit }) => {
         </div>
 
         <div className={styles.right}>
-          <label htmlFor="release_date">release date </label>
+          <label htmlFor="releaseYear">release date </label>
           <input
-            id="release_date"
+            id="releaseYear"
+            name="releaseYear"
             type="date"
             placeholder="Select Date"
             defaultValue={movieInfo?.releaseYear}
@@ -49,13 +53,15 @@ export const MovieForm = ({ movieInfo = {}, onSubmit }) => {
           <label htmlFor="rating"> rating </label>
           <input
             id="rating"
+            name="rating"
             placeholder="0.0"
             defaultValue={movieInfo?.rating}
           />
 
-          <label htmlFor="runtime">runtime </label>
+          <label htmlFor="duration">runtime </label>
           <input
-            id="runtime"
+            id="duration"
+            name="duration"
             placeholder="minutes"
             defaultValue={movieInfo?.duration}
           />
@@ -65,6 +71,7 @@ export const MovieForm = ({ movieInfo = {}, onSubmit }) => {
       <label htmlFor="description">overview </label>
       <textarea
         id="description"
+        name="description"
         placeholder="Movie description"
         defaultValue={movieInfo?.description}
       ></textarea>
