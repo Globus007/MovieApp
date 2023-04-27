@@ -1,0 +1,30 @@
+.logo {
+    color: #F65261;
+}
+
+.button {
+    width: 160px;
+    height: 46px;
+    font-size: 20px;
+    color: #F65261;
+    text-transform: uppercase;
+
+    background: #606060;
+    border: none;
+    cursor: pointer;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat( 3, 1fr);
+    gap: 50px;
+
+    padding-bottom: 50px;
+}

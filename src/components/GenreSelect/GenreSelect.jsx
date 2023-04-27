@@ -11,7 +11,7 @@ export const GenreSelect = ({ genders, selected, onSelect }) => {
 
   return (
     <ul className={styles.ul}>
-      {genders.map((genre) => {
+      {genders?.map((genre) => {
         let className = styles.li;
         if (activeGenre === genre) {
           className = [styles.li, styles.selected].join(' ');
