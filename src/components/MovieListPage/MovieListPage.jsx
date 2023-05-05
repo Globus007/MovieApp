@@ -1,61 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 
 import { SearchForm } from '../SearchForm/SearchForm';
 import { GenreSelect } from '../GenreSelect/GenreSelect';
 import { SortControl } from '../SortControl/SortControl';
 import { MovieTitle } from '../MovieTile/MovieTitle';
 import { MovieDetails } from '../MovieDetails/MovieDetails';
-import { transformResponseToMovieInfo } from '../../utils/utils';
 
 import styles from './MovieListPage.module.css';
+import { useFetchMovies } from '../../hooks/UseFetchMovies';
 
 export const MovieListPage = () => {
-  const MOVIE_URL = 'http://localhost:4000/movies';
   const ALL_GENRES = 'all';
   const genders = [ALL_GENRES, 'documentary', 'comedy', 'horror', 'crime'];
 
   const [searchQuery, setSearchQuery] = useState('');
   const [sortCriteria, setSortCriteria] = useState('date');
   const [activeGenre, setActiveGenre] = useState(ALL_GENRES);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  // const [selectedMovie, setSelectedMovie] = useState(null);
 
-  const [movieList, setMovieList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchMovieList = async () => {
-      setError(null);
-      setIsLoading(true);
-
-      let url = `${MOVIE_URL}?sortBy=${sortCriteria}&sortOrder=asc`;
-
-      if (searchQuery) {
-        url += `&searchBy=title&search=${searchQuery}`;
-      }
-      if (activeGenre !== ALL_GENRES) {
-        url += `&searchBy=genres&filter=${activeGenre}`;
-      }
-
-      try {
-        const result = await axios.get(url);
-        const movieList = result.data.data?.map((movie) =>
-          transformResponseToMovieInfo(movie),
-        );
-        if (movieList.length === 1) {
-          setSelectedMovie(movieList[0]);
-        } else {
-          setMovieList(movieList);
-        }
-      } catch (e) {
-        setError(e?.message);
-      }
-      setIsLoading(false);
-    };
-
-    fetchMovieList();
-  }, [activeGenre, searchQuery, sortCriteria]);
+  const { movieList, isLoading, error, selectedMovie } = useFetchMovies(
+    searchQuery,
+    activeGenre,
+    sortCriteria,
+  );
 
   const onSearchHandler = (query) => {
     setActiveGenre(ALL_GENRES);
@@ -72,7 +39,7 @@ export const MovieListPage = () => {
   };
   const topButtonHandler = () => {
     if (selectedMovie) {
-      setSelectedMovie(null);
+      setSearchQuery('');
     }
   };
 

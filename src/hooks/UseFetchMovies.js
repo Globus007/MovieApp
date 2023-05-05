@@ -32,6 +32,7 @@ export const useFetchMovies = (searchQuery, activeGenre, sortCriteria) => {
         if (movieList.length === 1) {
           setSelectedMovie(movieList[0]);
         } else {
+          setSelectedMovie(null);
           setMovieList(movieList);
         }
       } catch (e) {
