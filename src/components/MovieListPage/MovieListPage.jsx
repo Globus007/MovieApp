@@ -3,6 +3,7 @@ import {
   Outlet,
   useLoaderData,
   useNavigate,
+  useParams,
   useSearchParams,
 } from 'react-router-dom';
 
@@ -17,6 +18,7 @@ import { getChangedSearchParams } from '../../utils/utils';
 export const MovieListPage = () => {
   const { movieList, sortBy, genre } = useLoaderData();
   const navigate = useNavigate();
+  const { movieId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const onSelectGenreHandler = (genre) => {
@@ -30,7 +32,11 @@ export const MovieListPage = () => {
     });
     setSearchParams(params);
   };
-  const topButtonHandler = () => {};
+  const topButtonHandler = () => {
+    if (movieId) {
+      return navigate('/');
+    }
+  };
   const handleMovieClick = (movie) => {
     return navigate(`/${movie.id}`);
   };
@@ -40,7 +46,7 @@ export const MovieListPage = () => {
       <header>
         <div className={styles.logo}>netflixroulette</div>
         <button className={styles.button} onClick={topButtonHandler}>
-          {'Add movie'}
+          {movieId ? 'Back' : '+ Add movie'}{' '}
         </button>
       </header>
 
