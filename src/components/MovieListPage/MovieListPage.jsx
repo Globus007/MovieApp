@@ -1,46 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
+import {
+  Outlet,
+  useLoaderData,
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom';
 
-import { SearchForm } from '../SearchForm/SearchForm';
 import { GenreSelect } from '../GenreSelect/GenreSelect';
 import { SortControl } from '../SortControl/SortControl';
 import { MovieTitle } from '../MovieTile/MovieTitle';
-import { MovieDetails } from '../MovieDetails/MovieDetails';
 
 import styles from './MovieListPage.module.css';
-import { useFetchMovies } from '../../hooks/UseFetchMovies';
+import { GENDERS } from '../../constants/constants';
+import { getChangedSearchParams } from '../../utils/utils';
 
 export const MovieListPage = () => {
-  const ALL_GENRES = 'all';
-  const genders = [ALL_GENRES, 'documentary', 'comedy', 'horror', 'crime'];
-
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortCriteria, setSortCriteria] = useState('date');
-  const [activeGenre, setActiveGenre] = useState(ALL_GENRES);
-  // const [selectedMovie, setSelectedMovie] = useState(null);
-
-  const { movieList, isLoading, error, selectedMovie } = useFetchMovies(
-    searchQuery,
-    activeGenre,
-    sortCriteria,
-  );
-
-  const onSearchHandler = (query) => {
-    setActiveGenre(ALL_GENRES);
-    setSearchQuery(query);
-  };
+  const { movieList, sortBy, genre } = useLoaderData();
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const onSelectGenreHandler = (genre) => {
-    setSearchQuery('');
-    setActiveGenre(genre);
+    const params = getChangedSearchParams(searchParams, { genre });
+    setSearchParams(params);
   };
 
   const onSortingHandler = (sortCriteria) => {
-    setSortCriteria(sortCriteria);
+    const params = getChangedSearchParams(searchParams, {
+      sortBy: sortCriteria,
+    });
+    setSearchParams(params);
   };
-  const topButtonHandler = () => {
-    if (selectedMovie) {
-      setSearchQuery('');
-    }
+  const topButtonHandler = () => {};
+  const handleMovieClick = (movie) => {
+    return navigate(`/${movie.id}`);
   };
 
   return (
@@ -48,44 +40,32 @@ export const MovieListPage = () => {
       <header>
         <div className={styles.logo}>netflixroulette</div>
         <button className={styles.button} onClick={topButtonHandler}>
-          {selectedMovie ? 'Back' : '+ Add movie'}
+          {'Add movie'}
         </button>
       </header>
 
       <main>
-        {selectedMovie ? (
-          <MovieDetails movieInfo={selectedMovie} />
-        ) : (
-          <>
-            <h1>Find your movie</h1>
-            <SearchForm initialQuery={searchQuery} onSearch={onSearchHandler} />
-          </>
-        )}
+        <Outlet />
       </main>
 
       <section className={styles.navigation}>
         <GenreSelect
-          selected={activeGenre}
-          genders={genders}
+          selected={genre}
+          genders={GENDERS}
           onSelect={onSelectGenreHandler}
         />
-        <SortControl
-          currentSelection={sortCriteria}
-          onChange={onSortingHandler}
-        />
+        <SortControl currentSelection={sortBy} onChange={onSortingHandler} />
       </section>
 
-      {error && <div>${error}</div>}
-
-      {isLoading ? (
-        <div className="loader">Loading...</div>
-      ) : (
-        <section className={styles.grid}>
-          {movieList?.map((movie) => (
-            <MovieTitle key={movie.movieName} movieInfo={movie} />
-          ))}
-        </section>
-      )}
+      <section className={styles.grid}>
+        {movieList?.map((movie) => (
+          <MovieTitle
+            key={movie.movieName}
+            movieInfo={movie}
+            onClick={() => handleMovieClick(movie)}
+          />
+        ))}
+      </section>
 
       <footer>
         <div className={styles.logo}>netflixroulette</div>

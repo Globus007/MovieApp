@@ -1,31 +1,42 @@
 import React, { useState } from 'react';
 import styles from './SearchForm.module.css';
+import { useSearchParams } from 'react-router-dom';
+import { getChangedSearchParams } from '../../utils/utils';
 
-export const SearchForm = ({ initialQuery, onSearch }) => {
-  const [query, setQuery] = useState(initialQuery);
+export const SearchForm = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get('query') ?? '';
+  const [searchQuery, setSearchQuery] = useState(search);
 
   const handleChange = (event) => {
-    setQuery(event.target.value);
+    setSearchQuery(event.target.value);
   };
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
-      onSearch(query);
+      handleSubmit();
     }
   };
 
+  const handleSubmit = () => {
+    const params = getChangedSearchParams(searchParams, {
+      query: searchQuery,
+    });
+    setSearchParams(params);
+  };
+
   return (
-    <div className={styles.div}>
+    <section className={styles.section}>
       <input
         placeholder={'What do you want to watch?'}
         className={styles.input}
-        value={query}
+        value={searchQuery}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      <button className={styles.button} onClick={() => onSearch(query)}>
+      <button className={styles.button} onClick={handleSubmit}>
         search
       </button>
-    </div>
+    </section>
   );
 };
