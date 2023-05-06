@@ -4,6 +4,8 @@ import { MovieListPage } from './components/MovieListPage/MovieListPage';
 import { SearchForm } from './components/SearchForm/SearchForm';
 import { MovieDetailsWrapper } from './components/MovieDetailsWrapper/MovieDetailsWrapper';
 import { getMovieInfo, getMovieList } from './utils/utils';
+import { AddMovieForm } from './components/AddMovieForm/AddMovieForm';
+import { EditMovieForm } from './components/EditMovieForm/EditMovieForm';
 
 export const router = createBrowserRouter([
   {
@@ -13,12 +15,18 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: (
-          <>
-            <h1>Find your movie</h1>
-            <SearchForm />
-          </>
-        ),
+        element: <SearchForm />,
+        children: [
+          {
+            path: '/new',
+            element: <AddMovieForm />,
+          },
+          {
+            path: '/:movieId/edit',
+            element: <EditMovieForm />,
+            loader: getMovieInfo,
+          },
+        ],
       },
       {
         path: '/:movieId',

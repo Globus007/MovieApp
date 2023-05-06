@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './SearchForm.module.css';
-import { useSearchParams } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import { getChangedSearchParams } from '../../utils/utils';
 
 export const SearchForm = () => {
@@ -26,17 +26,23 @@ export const SearchForm = () => {
   };
 
   return (
-    <section className={styles.section}>
-      <input
-        placeholder={'What do you want to watch?'}
-        className={styles.input}
-        value={searchQuery}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-      />
-      <button className={styles.button} onClick={handleSubmit}>
-        search
-      </button>
-    </section>
+    <>
+      <h1>Find your movie</h1>
+
+      <section className={styles.section}>
+        <input
+          placeholder={'What do you want to watch?'}
+          className={styles.input}
+          value={searchQuery}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+        />
+        <button className={styles.button} onClick={handleSubmit}>
+          search
+        </button>
+      </section>
+
+      <Outlet />
+    </>
   );
 };
