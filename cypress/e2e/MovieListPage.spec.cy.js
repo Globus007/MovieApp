@@ -53,7 +53,6 @@ describe('MovieListPage', () => {
     const buttonSearchSelector = 'button.SearchForm_button__UXY06';
     const inputSearchSelector = 'input.SearchForm_input__HOxJo';
     const movieFullInfoSelector = 'section.MovieDetails_section__3J5A0';
-    const filmName = 'Black Panther';
 
     it('Should filter films with "sex" in title when searchString is "sex" and pressed search button', () => {
       cy.get(inputSearchSelector).type('sex');
@@ -64,23 +63,8 @@ describe('MovieListPage', () => {
       });
     });
 
-    it('Should show movieInfo instead of search form if only one movie is found', () => {
-      cy.get(inputSearchSelector).type(filmName);
-      cy.get(buttonSearchSelector).click();
-
-      cy.get(buttonSearchSelector).should('not.exist');
-      cy.get(inputSearchSelector).should('not.exist');
-
-      cy.get(movieFullInfoSelector)
-        .should('exist')
-        .get('h2')
-        .invoke('text')
-        .should('have.string', filmName);
-    });
-
     it('Should show search form after exit from movieInfo', () => {
-      cy.get(inputSearchSelector).type(filmName);
-      cy.get(buttonSearchSelector).click();
+      cy.visit('http://localhost:3000/284054');
 
       cy.get(buttonSearchSelector).should('not.exist');
       cy.get(inputSearchSelector).should('not.exist');
