@@ -50,7 +50,7 @@ export const getMovieList = async ({ request }) => {
     requestUrl += `&searchBy=title&search=${search}`;
   }
   if (genre !== ALL_GENRES) {
-    requestUrl += `&searchBy=genres&filter=${genre}`;
+    requestUrl += `&filter=${genre}`;
   }
 
   const movieData = await fetchMovies(requestUrl);
