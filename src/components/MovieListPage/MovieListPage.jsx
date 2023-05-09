@@ -46,7 +46,7 @@ export const MovieListPage = () => {
       <header>
         <div className={styles.logo}>netflixroulette</div>
         <button className={styles.button} onClick={topButtonHandler}>
-          {movieId ? 'Back' : '+ Add movie'}{' '}
+          {movieId ? 'Back' : '+ Add movie'}
         </button>
       </header>
 
