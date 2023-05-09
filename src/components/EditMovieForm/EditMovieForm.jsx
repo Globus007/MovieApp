@@ -11,7 +11,6 @@ export const EditMovieForm = () => {
   const navigate = useNavigate();
   const onCloseHandler = () => navigate('/');
   const movieInfo = useLoaderData();
-  console.log(movieInfo);
 
   const editMovie = async (data) => {
     try {
