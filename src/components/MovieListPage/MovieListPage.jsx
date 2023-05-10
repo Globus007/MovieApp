@@ -36,6 +36,7 @@ export const MovieListPage = () => {
     if (movieId) {
       return navigate('/');
     }
+    navigate('/new');
   };
   const handleMovieClick = (movie) => {
     return navigate(`/${movie.id}`);

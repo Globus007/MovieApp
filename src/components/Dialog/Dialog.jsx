@@ -6,7 +6,7 @@ export const Dialog = ({ title, children, onClose }) => {
   return (
     <>
       {createPortal(
-        <div className={styles.dialog}>
+        <dialog className={styles.dialog}>
           <button
             aria-label="close"
             className={styles.close}
@@ -16,7 +16,7 @@ export const Dialog = ({ title, children, onClose }) => {
             <h2 className={styles.title}>{title}</h2>
             {children}
           </div>
-        </div>,
+        </dialog>,
         document.body,
       )}
     </>

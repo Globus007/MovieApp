@@ -16,6 +16,7 @@ export const transformResponseToMovieInfo = (data) => {
     id,
     imageUrl: poster_path,
     movieName: title,
+    release_date,
     releaseYear: release_date?.substring(0, 4),
     relevantGenres: genres,
     rating: vote_average,

@@ -2,11 +2,6 @@
     width: 100%;
 }
 
-.section {
-    width: 350px;
-    height: 500px;
-}
-
 .name {
     display: flex;
     justify-content: space-between;
@@ -14,6 +9,30 @@
 }
 
 .article {
-    cursor: pointer;
+    position: relative;
     width: 320px;
+}
+
+.article:hover > button {
+    display: block;
+}
+
+.content {
+    cursor: pointer;
+}
+
+.menuBtn {
+    display: none;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+
+    width: 30px;
+    height: 30px;
+
+    background: #232323;
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
 }
