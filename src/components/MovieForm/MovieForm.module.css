@@ -6,7 +6,7 @@
     margin-bottom: 10px;
 }
 
-.form input, select, textarea {
+.form input,.form select,.form textarea {
     background: #323232;
     border: none;
     padding: 10px;
@@ -52,11 +52,11 @@
     border: #FFFFFF solid 1px;
 }
 
-button[type='submit'] {
+.submit {
     background-color: #F65261;
 }
 
-button[type='reset'] {
+.reset {
     margin-right: 10px;
     color: #F65261;
     background: none;

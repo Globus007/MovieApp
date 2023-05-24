@@ -1,12 +1,13 @@
+'use client';
+
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './MovieActionsPopup.module.css';
-import { useNavigate } from 'react-router-dom';
 
 export const MovieActionsPopup = ({ movieId, onClick }) => {
-  const navigate = useNavigate();
-
+  const router = useRouter();
   const editMovie = () => {
-    navigate(`/${movieId}/edit`);
+    router.push(`/${movieId}/edit`);
     onClick();
   };
 

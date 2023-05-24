@@ -97,8 +97,12 @@ export const MovieForm = ({ movieInfo = {}, onSubmit }) => {
       <p className={styles.error}>{errors.overview?.message}</p>
 
       <div className={styles.buttons}>
-        <button type="reset">reset</button>
-        <button type="submit">submit</button>
+        <button className={styles.reset} type="reset">
+          reset
+        </button>
+        <button className={styles.submit} type="submit">
+          submit
+        </button>
       </div>
     </form>
   );

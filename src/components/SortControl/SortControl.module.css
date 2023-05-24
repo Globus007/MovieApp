@@ -1,6 +1,5 @@
 .section {
-    display: flex;
-    align-items: baseline;
+    margin-right: 60px;
 }
 
 .label, .select {

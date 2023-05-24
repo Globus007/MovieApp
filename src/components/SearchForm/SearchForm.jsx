@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
-import styles from './SearchForm.module.css';
-import { Outlet, useSearchParams } from 'react-router-dom';
-import { getChangedSearchParams } from '../../utils/utils';
+'use client';
 
-export const SearchForm = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const search = searchParams.get('query') ?? '';
+import React, { useCallback, useState } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import styles from './SearchForm.module.css';
+
+export const SearchForm = ({ search = '' }) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(search);
+
+  const createQueryString = useCallback(
+    (name, value) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams],
+  );
 
   const handleChange = (event) => {
     setSearchQuery(event.target.value);
@@ -19,17 +31,14 @@ export const SearchForm = () => {
   };
 
   const handleSubmit = () => {
-    const params = getChangedSearchParams(searchParams, {
-      query: searchQuery,
-    });
-    setSearchParams(params);
+    router.push(pathname + '?' + createQueryString('query', searchQuery));
   };
 
   return (
-    <>
+    <section className={styles.section}>
       <h1>Find your movie</h1>
 
-      <section className={styles.section}>
+      <div className={styles.searchForm}>
         <input
           placeholder={'What do you want to watch?'}
           className={styles.input}
@@ -40,9 +49,7 @@ export const SearchForm = () => {
         <button className={styles.button} onClick={handleSubmit}>
           search
         </button>
-      </section>
-
-      <Outlet />
-    </>
+      </div>
+    </section>
   );
 };

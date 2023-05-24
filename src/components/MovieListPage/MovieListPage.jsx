@@ -1,60 +1,43 @@
-import React from 'react';
-import {
-  Outlet,
-  useLoaderData,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
+'use client';
 
+import React, { useCallback } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+
+import styles from './MovieListPage.module.css';
 import { GenreSelect } from '../GenreSelect/GenreSelect';
+import { GENDERS } from '../../constants/constants';
 import { SortControl } from '../SortControl/SortControl';
 import { MovieTitle } from '../MovieTile/MovieTitle';
 
-import styles from './MovieListPage.module.css';
-import { GENDERS } from '../../constants/constants';
-import { getChangedSearchParams } from '../../utils/utils';
+export const MovieListPage = ({ movieList, sortBy, genre }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
 
-export const MovieListPage = () => {
-  const { movieList, sortBy, genre } = useLoaderData();
-  const navigate = useNavigate();
-  const { movieId } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const createQueryString = useCallback(
+    (name, value) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams],
+  );
 
   const onSelectGenreHandler = (genre) => {
-    const params = getChangedSearchParams(searchParams, { genre });
-    setSearchParams(params);
+    router.push(pathname + '?' + createQueryString('genre', genre));
   };
 
   const onSortingHandler = (sortCriteria) => {
-    const params = getChangedSearchParams(searchParams, {
-      sortBy: sortCriteria,
-    });
-    setSearchParams(params);
+    router.push(pathname + '?' + createQueryString('sortBy', sortCriteria));
   };
-  const topButtonHandler = () => {
-    if (movieId) {
-      return navigate('/');
-    }
-    navigate('/new');
-  };
+
   const handleMovieClick = (movie) => {
-    return navigate(`/${movie.id}`);
+    router.push(`/${movie.id}`);
   };
 
   return (
     <>
-      <header>
-        <div className={styles.logo}>netflixroulette</div>
-        <button className={styles.button} onClick={topButtonHandler}>
-          {movieId ? 'Back' : '+ Add movie'}
-        </button>
-      </header>
-
-      <main>
-        <Outlet />
-      </main>
-
       <section className={styles.navigation}>
         <GenreSelect
           selected={genre}
