@@ -25,7 +25,7 @@ export const transformResponseToMovieInfo = (data) => {
   };
 };
 
-export const getMovieInfo = async ({ params: { movieId } }) => {
+export const getMovieInfo = async (movieId) => {
   const url = `${MOVIE_URL}/${movieId}`;
   const movie = await fetchMovies(url);
   return transformResponseToMovieInfo(movie);
@@ -38,16 +38,15 @@ const fetchMovies = async (url) => {
   return data.data ? data.data : data;
 };
 
-export const getMovieList = async ({ request }) => {
-  const url = new URL(request.url);
-  const sortBy = url.searchParams.get('sortBy') ?? 'date';
-  const search = url.searchParams.get('query');
-  const genre = url.searchParams.get('genre') ?? ALL_GENRES;
-
+export const getMovieList = async ({
+  sortBy = 'date',
+  query = '',
+  genre = ALL_GENRES,
+}) => {
   let requestUrl = `${MOVIE_URL}?sortBy=${sortBy}&sortOrder=asc`;
 
-  if (search) {
-    requestUrl += `&searchBy=title&search=${search}`;
+  if (query) {
+    requestUrl += `&searchBy=title&search=${query}`;
   }
   if (genre !== ALL_GENRES) {
     requestUrl += `&filter=${genre}`;

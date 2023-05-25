@@ -1,0 +1,38 @@
+* {
+  font-family: 'Montserrat', serif;
+  color: #FFFFFF;
+  font-size: 20px;
+}
+
+body {
+  background-color: #232323;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+main {
+  margin: 0 auto;
+  width: 80%;
+}
+
+footer {
+  background-color: #424242;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1, h2 {
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+h3 {
+  font-size: 18px;
+  text-transform: capitalize;
+}

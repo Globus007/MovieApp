@@ -1,6 +1,8 @@
+'use client';
+
 import React, { useState } from 'react';
-import styles from './MovieTitle.module.css';
 import { MovieActionsPopup } from '../MovieActionsPopup/MovieActionsPopup';
+import styles from './MovieTitle.module.css';
 
 export const MovieTitle = ({ movieInfo, onClick }) => {
   const { imageUrl, movieName, releaseYear, relevantGenres, id } = movieInfo;

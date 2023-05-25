@@ -10,7 +10,7 @@ export const SortControl = ({ currentSelection, onChange }) => {
   };
 
   return (
-    <div>
+    <div className={styles.section}>
       <label className={styles.label} htmlFor="sort">
         sort by
       </label>
